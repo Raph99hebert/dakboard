@@ -1,87 +1,87 @@
-# castDeck
+# DAKboard
 
 ![](castDeck.jpg)
 
-Generic `iframe` based slide show chromecast application. Features:
+Application chromecast de diaporama générique basée sur `iframe`. Traits:
 
--   Scale factor adjustment
--   Aspect ratio adjustment
--   Overscan adjustment
--   Rotation adjustment
--   Transitions between multiple urls
+- Ajustement du facteur d'échelle
+- Ajustement du rapport d'aspect
+- Ajustement de surbalayage
+- Ajustement de la rotation
+- Transitions entre plusieurs URL
 
-## Usage
+## Utilisation
 
--   Go to the [control url](https://nlcamarillo.github.io/castDeck)
--   Adjust settings
--   Press `cast`
+- Allez sur [l'url de contrôle](https://nlcamarillo.github.io/castDeck)
+- Ajuster les paramètres
+- Appuyez sur "diffuser"
 
-## Using the receiver alone
+## Utilisation du récepteur seul
 
-The management application is just one example. You could use the receiver application in your own product as well. In general, the way it works is as follows:
+L'application de gestion n'est qu'un exemple. Vous pouvez également utiliser l'application récepteur dans votre propre produit. En général, le fonctionnement est le suivant :
 
--   create a web page, anywhere. This contains the content you want to display.
--   create a sender application, that loads up castDeck on your chromecast, which the content web page.
--   control castDeck from your own application. The api is discussed below.
+- créer une page Web, n'importe où. Celui-ci contient le contenu que vous souhaitez afficher.
+- créer une application d'envoi, qui charge castDeck sur votre chromecast, dont la page Web de contenu.
+- contrôlez castDeck depuis votre propre application. L'API est décrite ci-dessous.
 
-## Api
+##API
 
-To create your own application around castDeck:
+Pour créer votre propre application autour de castDeck :
 
--   include the google cast api: `www.gstatic.com/cv/js/sender/v1/cast_sender.js`
--   include the `senderApplication.js`
+- inclure l'API Google Cast : `www.gstatic.com/cv/js/sender/v1/cast_sender.js`
+- inclure le `senderApplication.js`
 
-CastDeck is available as a global `castDeck` singleton
+CastDeck est disponible en tant que singleton global "castDeck"
 
 ## options
 
-set `castDeck.options.log = true;` after including `senderApplication.js` to enable logging for debugging
+définissez `castDeck.options.log = true;` après avoir inclus `senderApplication.js` pour activer la journalisation pour le débogage
 
-## methods
+## méthodes
 
-### castDeck.cast(url? || url[]?)
+### castDeck.cast(url ? || url[]?)
 
-start casting with the given url. Url can be a single string or an array
+commencer à diffuser avec l'URL donnée. L'URL peut être une chaîne unique ou un tableau
 
 ### castDeck.stop()
 
-stop casting
+arrêter de diffuser
 
-### castDeck.setZoom(value), castDeck.zoomIn(), castDeck.zoomOut(), castDeck.zoomReset()
+### castDeck.setZoom(valeur), castDeck.zoomIn(), castDeck.zoomOut(), castDeck.zoomReset()
 
-adjust zoom
+ajuster le zoom
 
 ### castDeck.rotateCCW(), castDeck.rotateCW()
 
-rotate counter clockwise (CCW) or clockwise (CW)
+tourner dans le sens antihoraire (CCW) ou dans le sens horaire (CW)
 
 ### castDeck.adjustTop(px), castDeck.adjustRight(px), castDeck.adjustBottom(px), castDeck.adjustLeft(px)
 
-adjust overscan parameters. Some monitors (tvs specifically) cut away some of the sides of the viewport. You can adjust the overscan parameters to mitigate that.
+régler les paramètres de surbalayage. Certains moniteurs (téléviseurs en particulier) coupent certains des côtés de la fenêtre. Vous pouvez ajuster les paramètres de surbalayage pour atténuer cela.
 
 ### castDeck.updateAspect(value | 'native')
 
-pass in the string `native` or a numeric value to adjust the aspect ratio. Some monitors distort the HD aspect ratio (which is 16:9) to fit the ratio of the device. Pass in the actual aspect ratio of the device to fix this distortion.
+passez la chaîne `native` ou une valeur numérique pour ajuster le format d'image. Certains moniteurs déforment le rapport d'aspect HD (qui est de 16:9) pour s'adapter au rapport de l'appareil. Transmettez le format d'image réel de l'appareil pour corriger cette distorsion.
 
-### castDeck.updateTransition(value)
+### castDeck.updateTransition(valeur)
 
-set the transition type, currently only 'fade' is supported
+définir le type de transition, actuellement seul "fondu" est pris en charge
 
-### castDeck.updateDuration(value)
+### castDeck.updateDuration(valeur)
 
-set the display duration between transition, defaults to 10 seconds.
+définir la durée d'affichage entre les transitions, par défaut à 10 secondes.
 
-## Notes
+## Remarques
 
--   The castDeck api id is `4EC978AD`
--   When started, the following json message can be sent to the `urn:x-cast:org.firstlegoleague.castDeck` namespace
+- L'identifiant de l'API castDeck est `4EC978AD`
+- Une fois démarré, le message json suivant peut être envoyé à l'espace de noms `urn:x-cast:org.firstlegoleague.castDeck`
 
           {
-              "url":"<url to load>",
-              "rotation": <rotation in degrees>,
-              "zoom": <zoom level>,
-              "aspect": <"native"|ratio>,
-              "overscan": [<top>,<right>,<bottom>,<left>],
-              "transition": "fade",
-              "duration": <seconds>
+              "url":"<url à charger>",
+              "rotation": <rotation en degrés>,
+              "zoom": <niveau de zoom>,
+              "aspect": <"natif"|ratio>,
+              "overscan": [<haut>,<droite>,<bas>,<gauche>],
+              "transition": "fondu",
+              "durée": <secondes>
           }
