@@ -235,7 +235,7 @@
                         return `
                     <p>
                         <label for="url${index}">url ${index + 1}</label>
-                        <input id="url${index}" name="url" type="text" value="${url}">
+                        <input id="url${index}" name="url" type="text" value="google.com">
                         ${rem}
                     </p>
                 `;
