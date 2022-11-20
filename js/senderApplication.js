@@ -235,7 +235,7 @@
                         return `
                     <p>
                         <label for="url${index}">url ${index + 1}</label>
-                        <input id="url${index}" name="url" type="text" value="google.com">
+                        <input id="url${index}" name="url" type="text" value="https://dakboard.com/app/screenPredefined?p=582dd015f928a7db7881ea6f54df2d2c">
                         ${rem}
                     </p>
                 `;
